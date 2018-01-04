@@ -5,6 +5,7 @@ namespace CodeExperts\Entity;
 use CodeExperts\Entity\Contract\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
+use JMS\Serializer\Annotation AS JMS;
 
 /**
  * @ORM\Table("users")
@@ -14,16 +15,19 @@ use Doctrine\ORM\Mapping AS ORM;
 class User implements Entity
 {
     /**
+     * @JMS\Groups({"list"})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
     /**
+     * @JMS\Groups({"list"})
      * @ORM\Column(type="string")
      */
     private $name;
     /**
+     * @JMS\Groups({"list"})
      * @ORM\Column(type="string")
      */
     private $email;
@@ -32,25 +36,28 @@ class User implements Entity
      */
     private $password;
     /**
+     * @JMS\Groups({"list"})
      * @ORM\Column(type="string")
      */
     private $username;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="boolean")
      */
     private $IsActive;
     /**
+     * @JMS\Groups({"list"})
      * @ORM\Column(type="datetime")
      */
     private $CreatedAt;
     /**
+     * @JMS\Groups({"list"})
      * @ORM\Column(type="datetime")
      */
     private $UpdatedAt;
 
     /**
      * @var ArrayCollection
-     * @ORM|ManyToMany(targetEntity="Event", mappedBy="userCollection")
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="userCollection")
      */
     private $eventCollection;
 

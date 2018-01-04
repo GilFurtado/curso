@@ -6,6 +6,7 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use CodeExperts\Controller\UserController;
 use CodeExperts\Controller\EventController;
+use CodeExperts\Controller\SubscriptionController;
 
 class ControllerServiceProvider implements ServiceProviderInterface
 {
@@ -18,5 +19,9 @@ class ControllerServiceProvider implements ServiceProviderInterface
 		$app["event"] = function(Container $app){
 			return new EventController($app);
 		};
+
+        $app["subscription"] = function(Container $app){
+            return new SubscriptionController($app);
+        };
 	}
 }
