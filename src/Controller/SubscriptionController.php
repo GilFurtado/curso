@@ -24,7 +24,7 @@ class SubscriptionController extends BaseController
                 ->find($userId);
 
         $event = $doctrine
-                ->getRepository('CodeExperts\Entity\User')
+                ->getRepository('CodeExperts\Entity\Event')
                 ->find($event_id);
 
         $event->setUserCollection($user);

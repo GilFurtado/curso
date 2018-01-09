@@ -1,13 +1,13 @@
 <?php
 
-require 'C:\Users\gilsi\Desktop\git_projects\curso_codeExpert\api-master-online\bootstrap.php';
+require __DIR__.'/../bootstrap.php';
 
 use Doctrine\ORM\EntityManager;
 
-$dbParans = array(
+$dbParams = array(
     'driver' => 'pdo_sqlite',
-    'memory' => "true",
+    'memory' => "false",
     'path'   => 'memory'
 );
 
-return $entityManager = EntityManager::create($dbParans, $config);
+return $entityManager = EntityManager::create($dbParams, $config);

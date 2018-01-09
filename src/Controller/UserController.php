@@ -19,10 +19,13 @@ class UserController extends BaseController
             ->getRepository('CodeExperts\Entity\User');
         $build = SerializerBuilder::create()->build();
 
-        return new Response($build->serialize(
+        $response = new Response($build->serialize(
             $users,
             'json',
             SerializationContext::create()->setGroups(array('list'))), 200);
+
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     public function get($id)
@@ -35,10 +38,12 @@ class UserController extends BaseController
 
         $build = SerializerBuilder::create()->build();
 
-        return new Response($build->serialize(
-            $users,
+        $response = new Response($build->serialize(
+            $user,
             'json',
             SerializationContext::create()->setGroups(array('list'))), 200);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     public function save(Request $request)

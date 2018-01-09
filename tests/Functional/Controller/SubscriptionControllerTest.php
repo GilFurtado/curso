@@ -38,7 +38,7 @@ class SubscriptionControllerTest extends FunctionalTestCase
         );
 
         $response = $client->request('POST', '/events', [
-            'form_param' => $data
+            'form_params' => $data
         ]);
 
         $events = $client->request('GET', '/events');

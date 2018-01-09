@@ -1,6 +1,6 @@
 <?php
 
-require './vendor/autoload.php';
+require __DIR__.'./vendor/autoload.php';
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -12,7 +12,7 @@ $isDevMode = false;
 
 $paths = array(__DIR__ . '/src/Entity');
 
-$dbParans = array(
+$dbParams = array(
     'driver' => 'pdo_mysql',
     'user' => 'root',
     'password' => '',
@@ -35,4 +35,4 @@ AnnotationRegistry::registerAutoloadNamespace(
   __DIR__ . "/vendor/jms/serializer/src"
 );
 
-$entityManager = EntityManager::create($dbParans, $config);
+$entityManager = EntityManager::create($dbParams, $config);

@@ -17,7 +17,7 @@ class UserControllerTest extends FunctionalTestCase
         );
 
         $response = $client->request('POST', '/users', [
-           'forma_params' => $data
+           'form_params' => $data
         ]);
 
         $this->assertEquals(200, $response->getStatusCode());
@@ -71,7 +71,7 @@ class UserControllerTest extends FunctionalTestCase
         );
 
         $response = $client->request('PUT', '/users', [
-            'forma_params' => $dataUpdate
+            'form_params' => $dataUpdate
         ]);
 
         $this->assertEquals(200, $response->getStatusCode());

@@ -2,6 +2,7 @@
 
 require __DIR__ .'/../bootstrap.php';
 
+use CodeExperts\Service\JWTServiceProvider;
 use Silex\Application;
 use CodeExperts\Provider\ControllerServiceProvider;
 use CodeExperts\Provider\RouterServiceProvider;
@@ -13,6 +14,14 @@ $app['debug'] = true;
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 $app->register(new ControllerServiceProvider());
 $app->register(new RouterServiceProvider());
+
+$app->register(new JWTServiceProvider(), [
+    'iss' => $_SERVER['SERVER_NAME'],
+    'secret' => 'xyzxyz',
+    'expires' => 3600,
+    'signer' => 'HMACS'
+]);
+
 
 /**
  * Registra o Doctrine ORM Service Provider

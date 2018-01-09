@@ -22,9 +22,9 @@ class EventControllerTest extends FunctionalTestCase
             'end_time' => '22:00'
         );
 
-        $response = $client->request('POST', '/events', [
-            'form_param' => $data
-        ]);
+        $response = $client->request("POST", "/events", [[
+            'form_params' => $data
+        ]]);
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('Event created with success', json_decode($response->getBody())->msg);
@@ -93,7 +93,7 @@ class EventControllerTest extends FunctionalTestCase
         );
 
         $response = $client->request('PUT', '/events', [
-            'forma_params' => $dataUpdate
+            'form_params' => $dataUpdate
         ]);
 
         $this->assertEquals(200, $response->getStatusCode());

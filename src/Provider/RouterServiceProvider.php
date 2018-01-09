@@ -4,11 +4,24 @@ namespace CodeExperts\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class RouterServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $app)
     {
+        $verifyToken = function (Request $request, Container $app)
+        {
+          $token = $request->headers->get('Authorization');
+          $token = str_replace('Bearer', '', $token);
+
+          try{
+              $app['jwt']->validateToken($token);
+          } catch (\Exception $e){
+              return $app->json(['msg' => 'Invalid Token!'], 401);
+          }
+        };
+
         /**
          * User Routes
          */
