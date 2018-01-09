@@ -18,7 +18,7 @@ class AuthControllerTest extends FunctionalTestCase
 
         $this->assertEquals(200, $response->getStatusCode());
 
-        $this->assertObjectHasAttribute('token', \GuzzleHttp\json_decode($response->getBody()));
+        $this->assertObjectHasAttribute('token', json_decode($response->getBody()));
     }
 
     public function testSendTokenToAccessSpecificRouteNotAlowedWithoutToken()
@@ -31,7 +31,7 @@ class AuthControllerTest extends FunctionalTestCase
 
         $data = array(
           'name' => 'User Test',
-          'email' => 'email@email.com',
+          'email' => 'emailTest@email.com',
           'username' => 'userTest',
           'password' => '123456'
         );
@@ -39,7 +39,7 @@ class AuthControllerTest extends FunctionalTestCase
         $response = $client->request('POST', '/users', [
             'form_params' => $data,
             'headers' => [
-                'Authorization' => 'Bearer' . $token
+                'Authorization' => 'Bearer ' . $token
             ]
         ]);
 

@@ -4,7 +4,7 @@ namespace CodeExperts\Service;
 
 use CodeExperts\Security\Token;
 use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\Singer\Hmac\Sha256;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 

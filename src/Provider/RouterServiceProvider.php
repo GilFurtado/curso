@@ -23,11 +23,16 @@ class RouterServiceProvider implements ServiceProviderInterface
         };
 
         /**
+         * Auth
+         */
+        $app->post('/auth/login', 'auth:login');
+
+        /**
          * User Routes
          */
         $app->get('/users/', 'user:index');
         $app->get('/users/{id}', 'user:get');
-        $app->post('/users', 'user:save');
+        $app->post('/users', 'user:save')->before($verifyToken);
         $app->put('/users', 'user:update');
         $app->delete('/users/{id}', 'user:delete');
 
@@ -36,7 +41,7 @@ class RouterServiceProvider implements ServiceProviderInterface
          */
         $app->get('/events/', 'event:index');
         $app->get('/events/{id}', 'event:get');
-        $app->post('/events', 'event:save');
+        $app->post('/events', 'event:save')->before($verifyToken);
         $app->put('/events', 'event:update');
         $app->delete('/events/{id}', 'event:delete');
 

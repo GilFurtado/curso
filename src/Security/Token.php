@@ -67,4 +67,16 @@ class Token
         return $token->getToken();
     }
 
+    public function  validateToken($token = null)
+    {
+        if(is_null($token)){
+            throw  new \Exception("Token can not be null");
+        }
+
+        $parser = new Parser();
+        $parser = $parser->parse((string) $token);
+
+        return $parser->verify(new Sha256(), $this->app['secret']);
+    }
+
 }

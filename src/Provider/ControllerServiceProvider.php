@@ -4,6 +4,7 @@ namespace CodeExperts\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
+use CodeExperts\Controller\AuthController;
 use CodeExperts\Controller\UserController;
 use CodeExperts\Controller\EventController;
 use CodeExperts\Controller\SubscriptionController;
@@ -12,7 +13,11 @@ class ControllerServiceProvider implements ServiceProviderInterface
 {
 	public function register(Container $app)
 	{
-		$app["user"] = function(Container $app){
+        $app["auth"] = function(Container $app){
+            return new AuthController($app);
+        };
+
+	    $app["user"] = function(Container $app){
 			return new UserController($app);
 		};
 

@@ -8,6 +8,10 @@ class SubscriptionControllerTest extends FunctionalTestCase
 {
     public function testInsertNewSubscription()
     {
+        $response = $this->makeLogin();
+
+        $token = json_decode($response->getBody())->token;
+
         $client = $this->createClient();
 
         $data = array(
@@ -18,7 +22,10 @@ class SubscriptionControllerTest extends FunctionalTestCase
         );
 
         $response = $client->request('POST', '/users', [
-            'form_params' => $data
+            'form_params' => $data,
+            'headers' => [
+                'Authorization' => 'Bearer '.$token
+            ]
         ]);
 
         $users = $client->request('GET', '/users');
@@ -38,7 +45,10 @@ class SubscriptionControllerTest extends FunctionalTestCase
         );
 
         $response = $client->request('POST', '/events', [
-            'form_params' => $data
+            'form_params' => $data,
+            'headers' => [
+                'Authorization' => 'Bearer '.$token
+            ]
         ]);
 
         $events = $client->request('GET', '/events');
