@@ -36,7 +36,7 @@ $app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
 $app->register(new \Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider(), array(
    'orm.proxies_dir' => '/tmp',
    'orm.em.options' => array(
-       'mapping' => array(
+       'mappings' => array(
            array(
                'type' => 'annotation',
                'use_simple_annotation_reader' => false,
